@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "APC524"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = [
+  "typing_extensions; python_version < '3.11'"
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest", "uncertainties"
+]
+docs = [
+  "sphinx",
+  "furo",
+  "myst_parser"
+]
+
+[tool.ruff.lint]
+extend-select = [
+  "B",
+  "I",
+  "RUF",
+  "UP"
+]
