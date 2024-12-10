@@ -1,8 +1,6 @@
 Metadata-Version: 2.1
-Name: navier_stokes
+Name: navier-stokes
 Version: 0.1.0
 Summary: for solving and comparing different solutions to 1D Navier Stokes
 Author: Hengrui Zhu, Doyup Kwon, Marie Joe Sawma, Zhan Wu and Maria Fleury
 Requires-Python: >=3.9, <4
-Requires-Dist: numpy
-Requires-Dist: matplotlib
