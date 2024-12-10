@@ -4,7 +4,7 @@ import argparse
 
 
 @nox.session
-def tests(session: nox.Session) -> None:
+def test(session: nox.Session) -> None:
     """
     Run the unit and regular tests.
     """
