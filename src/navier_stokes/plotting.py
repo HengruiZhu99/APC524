@@ -1,10 +1,12 @@
 import matplotlib.pyplot as plt
+import numpy as np
+from numpy.typing import NDArray
 
 # Handy type alias
 FArray = NDArray[np.float64]
 
 
-def plot_results(x: FArray, u_initial: FArray, u_comparison: tuple[FArray, ...], labels: tuple[string,...], title: string = ""):
+def plot_results(x: FArray, u_initial: FArray, u_comparison: tuple[FArray, ...], labels: tuple[str,...], title: str = ""):
     """
     Displays a plot of different solutions to 1D Navier stokes equation
     in comparison with the initial condition.
@@ -13,8 +15,8 @@ def plot_results(x: FArray, u_initial: FArray, u_comparison: tuple[FArray, ...],
         x (FArray) = position
         u_initial (FArray) = fluid velocity at initial condition
         u_comparison (tuple[FArray, ...]) = different solutions for comparison
-        labels (tuple[string,...]) = labels for items in u_comparison
-        title (string) = title for the plot
+        labels (tuple[str,...]) = labels for items in u_comparison
+        title (str) = title for the plot
     """
 
     plt.figure(figsize=(10, 5), dpi=200)
