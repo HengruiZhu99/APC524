@@ -5,25 +5,42 @@ build-backend = "hatchling.build"
 [project]
 name = "navier_stokes"
 version = "0.1.0"
-requires-python = ">=3.9"
+description = "for solving and comparing different solutions to 1D Navier Stokes"
+authors = [
+    {name = "Hengrui Zhu"},
+    {name = "Doyup Kwon"},
+    {name = "Marie Joe Sawma"},
+    {name = "Zhan Wu"},
+    {name = "Maria Fleury"}
+]
+requires-python = ">=3.9, <4"
 dependencies = [
-  "typing_extensions; python_version < '3.11'"
+    "numpy",
+    "matplotlib",
+    "typing_extensions; python_version < '3.11'"
 ]
 
 [project.optional-dependencies]
 test = [
-  "pytest", "uncertainties", "numpy", "pandas", "matplotlib"
+    "pytest",
+    "uncertainties",
+    "numpy",
+    "pandas",
+    "matplotlib"
 ]
 docs = [
-  "sphinx",
-  "furo",
-  "myst_parser"
+    "sphinx",
+    "furo",
+    "myst_parser"
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/navier_stokes"]
 
 [tool.ruff.lint]
 extend-select = [
-  "B",
-  "I",
-  "RUF",
-  "UP"
+    "B",
+    "I",
+    "RUF",
+    "UP"
 ]
