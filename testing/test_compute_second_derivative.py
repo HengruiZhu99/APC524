@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from main_code import compute_second_derivative
+from navier_stokes.fdm_fvm_functions import *
 
 class TestComputeSecondDerivative(unittest.TestCase):
     """

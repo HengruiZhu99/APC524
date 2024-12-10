@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from main_code import apply_boundary_conditions
+from navier_stokes.fdm_fvm_functions import *
 
 class TestBoundaryConditions(unittest.TestCase):
     """

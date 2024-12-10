@@ -1,12 +1,7 @@
 import time
 import numpy as np
-from main_code import (
-    GaussionInitialize,
-    FDMMethod,
-    EulerIntegrator,
-    RK2Integrator,
-    RK4Integrator,
-)
+from navier_stokes.fdm_fvm_functions import *
+
 
 def performance_test():
     """
