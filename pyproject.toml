@@ -12,7 +12,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
-  "pytest", "uncertainties"
+  "pytest", "uncertainties", "numpy", "pandas"
 ]
 docs = [
   "sphinx",
