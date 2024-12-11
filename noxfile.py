@@ -17,6 +17,7 @@ def coverage(session: nox.Session) -> None:
     """
     Run coverage.
     """
+    session.install(".[test]")
     session.install("coverage", "pytest")
     session.run("coverage", "run", "-m", "pytest")
     session.run("coverage", "report")
