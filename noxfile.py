@@ -6,13 +6,16 @@ import argparse
 @nox.session
 def test(session: nox.Session) -> None:
     """
-    Run the unit and regular tests.
+    Run the tests.
     """
     session.install(".[test]")
     session.install("pytest")
     session.run("pytest", *session.posargs)
 
-def coverage(session):
+def coverage(session: nox.Session) -> None:
+    """
+    Run coverage.
+    """
     session.install("coverage", "pytest")
     session.run("coverage", "run", "-m", "pytest")
     session.run("coverage", "report")
@@ -22,7 +25,7 @@ def coverage(session):
 @nox.session(reuse_venv=True)
 def docs(session: nox.Session) -> None:
     """
-    Build the docs. Pass --non-interactive to avoid serving. First positional argument is the target directory.
+    Build the docs. 
     """
 
     parser = argparse.ArgumentParser()
