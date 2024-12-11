@@ -12,6 +12,12 @@ def test(session: nox.Session) -> None:
     session.install("pytest")
     session.run("pytest", *session.posargs)
 
+def coverage(session):
+    session.install("coverage", "pytest")
+    session.run("coverage", "run", "-m", "pytest")
+    session.run("coverage", "report")
+    session.run("coverage", "xml")
+
 
 @nox.session(reuse_venv=True)
 def docs(session: nox.Session) -> None:
