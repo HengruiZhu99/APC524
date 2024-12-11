@@ -11,7 +11,8 @@ def test(session: nox.Session) -> None:
     session.install(".[test]")
     session.install("pytest")
     session.run("pytest", *session.posargs)
-
+    
+@nox.session
 def coverage(session: nox.Session) -> None:
     """
     Run coverage.
