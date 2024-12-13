@@ -11,12 +11,13 @@ FArray = NDArray[np.float64]
 # Initialization #
 ###################
 
+
 class Initialize(abc.ABC):
     """
-    Initialize the domain and initial condition  
+    Initialize the domain and initial condition
     for solving the 1D Navier Stokes equation.
     """
-    
+
     @abc.abstractmethod
     def initialize(nx: int, L: float) -> tuple[FArray, FArray, float]:
         """
@@ -37,7 +38,7 @@ class GaussionInitialize(Initialize):
     Initializes the domain and initial conditions.
     Initial fluid velocity follows a gaussian distribution.
     """
-    
+
     def initialize(self, nx: int, L: float) -> tuple[FArray, FArray, float]:
         """
         Args:
@@ -52,7 +53,7 @@ class GaussionInitialize(Initialize):
         dx = L / (nx - 1)
         x = np.linspace(0, L, nx)
         u_initial = np.exp(-100 * (x - 0.5 * L) ** 2)
-        return x, u_initial, dx       
+        return x, u_initial, dx
 
 
 class SinusoidalInitialize(Initialize):
@@ -60,7 +61,7 @@ class SinusoidalInitialize(Initialize):
     Initializes the domain and initial conditions.
     Initial fluid velocity set as a sinusoidal curve.
     """
-    
+
     def initialize(self, nx: int, L: float) -> tuple[FArray, FArray, float]:
         """
         Args:
@@ -71,16 +72,17 @@ class SinusoidalInitialize(Initialize):
             x (FArray) = position
             u_initial (FArray) = initial fluid velocity
             dx (float) = length of step in space
-         """
+        """
         dx = L / (nx - 1)
         x = np.linspace(0, L, nx)
         u_initial = np.sin(2 * np.pi * x / L)
         return x, u_initial, dx
-    
+
 
 #########################
 ## Auxiliary functions ##
 #########################
+
 
 def apply_boundary_conditions(u: FArray) -> FArray:
     """
@@ -91,7 +93,7 @@ def apply_boundary_conditions(u: FArray) -> FArray:
 
     Returns:
         u (FArray) = fluid velocity with boundary conditions applied at first and last step
-    """ 
+    """
     u[0] = u[-2]
     u[-1] = u[1]
     return u
@@ -108,9 +110,9 @@ def compute_second_derivative(u: FArray, dx: float) -> FArray:
 
     Returns:
         u_xx (FArray) = viscous term
-    """ 
+    """
     u_xx = np.zeros_like(u)
-    u_xx[1:-1] = (u[2:] - 2 * u[1:-1] + u[:-2]) / dx ** 2
+    u_xx[1:-1] = (u[2:] - 2 * u[1:-1] + u[:-2]) / dx**2
     u_xx = apply_boundary_conditions(u_xx)
     return u_xx
 
@@ -123,6 +125,7 @@ class NumericalMethod(abc.ABC):
     """
     Numerical Methods for spatially discretizing the 1D Navier Stokes equation.
     """
+
     @abc.abstractmethod
     def __call__(self, u: FArray, dx: float, nu: float) -> FArray:
         """
@@ -141,6 +144,7 @@ class FDMMethod(NumericalMethod):
     """
     Finite difference method for spatially discretizing the 1D Navier Stokes equation.
     """
+
     def __call__(self, u: FArray, dx: float, nu: float) -> FArray:
         """
         Args:
@@ -162,6 +166,7 @@ class FVMMethod(NumericalMethod):
     """
     Finite volume method for spatially discretizing the 1D Navier Stokes equation.
     """
+
     def __call__(self, u: FArray, dx: float, nu: float) -> FArray:
         """
         Args:
@@ -173,7 +178,7 @@ class FVMMethod(NumericalMethod):
             rhs (FArray) = discretized navier stokes equation
         """
         rhs = np.zeros_like(u)
-        rhs = -((np.roll(u, -1))**2 - (np.roll(u, +1))**2) / (2 * dx)
+        rhs = -((np.roll(u, -1)) ** 2 - (np.roll(u, +1)) ** 2) / (2 * dx)
         rhs += nu * compute_second_derivative(u, dx)
         rhs = apply_boundary_conditions(rhs)
         return rhs
@@ -183,19 +188,27 @@ class FVMMethod(NumericalMethod):
 ## Time Integrators ##
 ######################
 
+
 class IntegratorBase(abc.ABC):
     """
     Integrates a 1D Navier Stokes equation in time
     """
+
     @abc.abstractmethod
-    def compute_step(self, method: NumericalMethod, nu: float, u: FArray, dx: float,) -> FArray:
+    def compute_step(
+        self,
+        method: NumericalMethod,
+        nu: float,
+        u: FArray,
+        dx: float,
+    ) -> FArray:
         """
         Args:
             method (NumericalMethod) = method for spatially discretizing equation
             nu (float) = viscocity
             u (FArray) = fluid velocity
             dx (float) = length of step in space
-        
+
         Returns:
             (FArray) = fluid velocity at the next time step
         """
