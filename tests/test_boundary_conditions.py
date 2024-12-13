@@ -2,6 +2,7 @@ import unittest
 import numpy as np
 from navier_stokes.fdm_fvm_functions import *
 
+
 class TestBoundaryConditions(unittest.TestCase):
     """
     Unit tests for the apply_boundary_conditions function.
@@ -18,8 +19,6 @@ class TestBoundaryConditions(unittest.TestCase):
         self.assertEqual(u_updated[0], u_updated[-2])
         self.assertEqual(u_updated[-1], u_updated[1])
 
+
 if __name__ == "__main__":
     unittest.main()
-
-
-
