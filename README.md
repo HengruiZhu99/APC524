@@ -1,6 +1,6 @@
-Class Project For APC524
+# Class Project For APC524
 
-Project Title: Solving the Navier Stokes Equations using the Finite Differencing and Finite Volume Methods
+## Project Title: Solving the Navier Stokes Equations using the Finite Differencing and Finite Volume Methods
 
 This repository contains a fully integrated codebase for solving the one-dimensional Navier-Stokes equations simplified under the assumptions of constant pressure, focusing on the balance between inertial, viscous, and external forces. The simplified equations for incompressible, constant-density flow are:
 
@@ -9,3 +9,6 @@ This repository contains a fully integrated codebase for solving the one-dimensi
 \rho \frac{\partial u}{\partial t} + \rho u \frac{\partial u}{\partial x} = \mu \frac{\partial^2 u}{\partial x^2} + f
 
 ```
+where $$u(x,t)$$ is the fluid velocity, $$\rho$$ is the constant fluid density, $$\mu$$ is the dynamic viscosity, and $$f$$ is the external body force per unit volume (if applicable).
+
+This project ocusing on using two common methods, the Finite Difference Method and the Finite Volume Method to solve this equation after discretizing the spatial and temporal derivatives. 
