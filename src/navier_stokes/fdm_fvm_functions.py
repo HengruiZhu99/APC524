@@ -333,6 +333,6 @@ class RK4Integrator(IntegratorBase):
 
         # Specifying static type here because mypy + numpy
         # loses track over multiple operations sometimes
-        result: FArray = u + (1 / 6) * (k1 + 2. * k2 + 2. * k3 + k4)
+        result: FArray = u + (1 / 6) * (k1 + 2.0 * k2 + 2.0 * k3 + k4)
         return result
-
+    
