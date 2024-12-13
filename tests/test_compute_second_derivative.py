@@ -2,6 +2,7 @@ import unittest
 import numpy as np
 from navier_stokes.fdm_fvm_functions import *
 
+
 class TestComputeSecondDerivative(unittest.TestCase):
     """
     Unit test for the compute_second_derivative function for smaller dx.
@@ -16,7 +17,7 @@ class TestComputeSecondDerivative(unittest.TestCase):
         u = np.sin(2 * np.pi * x)  # Test function
 
         # Analytic second derivative
-        expected_u_xx = -(2 * np.pi) ** 2 * np.sin(2 * np.pi * x)
+        expected_u_xx = -((2 * np.pi) ** 2) * np.sin(2 * np.pi * x)
 
         # Numerical second derivative
         u_xx = compute_second_derivative(u, dx)
