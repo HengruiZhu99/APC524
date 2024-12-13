@@ -16,6 +16,7 @@ class Initialize(abc.ABC):
     Initialize the domain and initial condition  
     for solving the 1D Navier Stokes equation.
     """
+    
     @abc.abstractmethod
     def initialize(nx: int, L: float) -> tuple[FArray, FArray, float]:
         """
@@ -24,8 +25,8 @@ class Initialize(abc.ABC):
             L (float) = length of domain
 
         Returns:
-            (FArray) = position 
-            (FArray) = initial fluid velocity 
+            (FArray) = position
+            (FArray) = initial fluid velocity
             (float) = length of step in space
         """
         pass
@@ -36,6 +37,7 @@ class GaussionInitialize(Initialize):
     Initializes the domain and initial conditions.
     Initial fluid velocity follows a gaussian distribution.
     """
+    
     def initialize(self, nx: int, L: float) -> tuple[FArray, FArray, float]:
         """
         Args:
@@ -43,21 +45,22 @@ class GaussionInitialize(Initialize):
             L (float) = length of domain
 
         Returns:
-            x (FArray) = position 
-            u_initial (FArray) = initial fluid velocity 
+            x (FArray) = position
+            u_initial (FArray) = initial fluid velocity
             dx (float) = length of step in space
-         """
+        """
         dx = L / (nx - 1)
         x = np.linspace(0, L, nx)
         u_initial = np.exp(-100 * (x - 0.5 * L) ** 2)
-        return x, u_initial, dx
-    
+        return x, u_initial, dx       
+
 
 class SinusoidalInitialize(Initialize):
     """
     Initializes the domain and initial conditions.
     Initial fluid velocity set as a sinusoidal curve.
     """
+    
     def initialize(self, nx: int, L: float) -> tuple[FArray, FArray, float]:
         """
         Args:
@@ -65,8 +68,8 @@ class SinusoidalInitialize(Initialize):
             L (float) = length of domain
 
         Returns:
-            x (FArray) = position 
-            u_initial (FArray) = initial fluid velocity 
+            x (FArray) = position
+            u_initial (FArray) = initial fluid velocity
             dx (float) = length of step in space
          """
         dx = L / (nx - 1)
