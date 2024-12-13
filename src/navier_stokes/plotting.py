@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from typing import TypeAlias
 from numpy.typing import NDArray
 from typing import TypeAlias
 
-FArray: TypeAlias = np.ndarray
+FArray: TypeAlias = NDArray[np.float64]
 
 
 def plot_results(
