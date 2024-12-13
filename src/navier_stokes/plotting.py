@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy.typing import NDArray
+from typing import TypeAlias
 
-# Handy type alias
-FArray = np.ndarray
+FArray: TypeAlias = np.ndarray
 
 
 def plot_results(
