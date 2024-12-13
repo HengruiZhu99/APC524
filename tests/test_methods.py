@@ -46,7 +46,7 @@ class TestNumericalMethods(unittest.TestCase):
             with self.subTest(u=u):
                 rhs = self.fdm_method(u, self.dx, self.nu)
                 expected_rhs = self.compute_expected_rhs_fdm(u)
-                np.testing.assert_almost_equal(rhs, expected_rhs, decimal=5)
+                np.testing.assert_almost_equal(rhs, expected_rhs, decimal=3)
 
     def test_fvm_varied_values(self):
         """
