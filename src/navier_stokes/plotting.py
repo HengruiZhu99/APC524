@@ -3,7 +3,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 # Handy type alias
-FArray = NDArray[np.float64]
+FArray = np.ndarray
 
 
 def plot_results(
