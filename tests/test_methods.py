@@ -2,6 +2,7 @@ import unittest
 import numpy as np
 from navier_stokes.fdm_fvm_functions import *
 
+
 class TestNumericalMethods(unittest.TestCase):
     """
     Unit tests for Finite Difference Method (FDM) and Finite Volume Method (FVM).
@@ -28,7 +29,7 @@ class TestNumericalMethods(unittest.TestCase):
         """
         Dynamically compute the expected RHS for the FVM method.
         """
-        rhs = -((np.roll(u, -1)**2 - np.roll(u, +1)**2)) / (2 * self.dx)
+        rhs = -((np.roll(u, -1) ** 2 - np.roll(u, +1) ** 2)) / (2 * self.dx)
         rhs += self.nu * (np.roll(u, -1) - 2 * u + np.roll(u, +1)) / self.dx**2
         return apply_boundary_conditions(rhs)
 
