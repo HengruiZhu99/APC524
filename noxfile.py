@@ -11,7 +11,8 @@ def test(session: nox.Session) -> None:
     session.install(".[test]")
     session.install("pytest")
     session.run("pytest", *session.posargs)
-    
+
+
 @nox.session
 def coverage(session: nox.Session) -> None:
     """
@@ -27,7 +28,7 @@ def coverage(session: nox.Session) -> None:
 @nox.session(reuse_venv=True)
 def docs(session: nox.Session) -> None:
     """
-    Build the docs. 
+    Build the docs.
     """
 
     parser = argparse.ArgumentParser()
