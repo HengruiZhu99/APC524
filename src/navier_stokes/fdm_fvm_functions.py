@@ -251,7 +251,7 @@ class EulerIntegrator(IntegratorBase):
     """
 
     def compute_step(
-       self,
+        self,
         method: NumericalMethod,
         nu: float,
         u: FArray,
