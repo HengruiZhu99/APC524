@@ -121,6 +121,7 @@ def compute_second_derivative(u: FArray, dx: float) -> FArray:
 ## Numerical Methods ##
 #########################
 
+
 class NumericalMethod(abc.ABC):
     """
     Numerical Methods for spatially discretizing the 1D Navier Stokes equation.
@@ -214,7 +215,15 @@ class IntegratorBase(abc.ABC):
         """
         pass
 
-    def integrate(self, initializer: Initialize, method: NumericalMethod, nx: int, L: float, nu: float, nt: int,) -> FArray:
+    def integrate(
+        self,
+        initializer: Initialize,
+        method: NumericalMethod,
+        nx: int,
+        L: float,
+        nu: float,
+        nt: int,
+    ) -> FArray:
         """
         Args:
             initializer (Initialize) = method initializing equation
@@ -223,7 +232,7 @@ class IntegratorBase(abc.ABC):
             L (float) = length of domain
             nu (float) = viscocity
             nt (int) = number of steps in time
-        
+
         Returns:
             u (FArray) = fluid velocity integrated in time
         """
@@ -232,7 +241,7 @@ class IntegratorBase(abc.ABC):
 
         for _ in range(nt):
             u = self.compute_step(method, nu, u, dx)
-       
+
         return u
 
 
@@ -240,14 +249,21 @@ class EulerIntegrator(IntegratorBase):
     """
     Uses the Euler method of integration, using current position to find the next.
     """
-    def compute_step(self, method: NumericalMethod, nu: float, u: FArray, dx: float,)-> FArray:
+
+    def compute_step(
+       self,
+        method: NumericalMethod,
+        nu: float,
+        u: FArray,
+        dx: float,
+    ) -> FArray:
         """
         Args:
             method (NumericalMethod) = method for spatially discretizing equation
             nu (float) = viscocity
             u (FArray) = fluid velocity
             dx (float) = length of step in space
-        
+
         Returns:
             u (FArray) = fluid velocity at the next time step
         """
@@ -256,18 +272,26 @@ class EulerIntegrator(IntegratorBase):
         u = apply_boundary_conditions(u)
         return u
 
+
 class RK2Integrator(IntegratorBase):
     """
     Uses second-order Runge-Kutta (RK2) method to compute integration in time
     """
-    def compute_step(self, method: NumericalMethod, nu: float, u: FArray, dx: float,)-> FArray:
+
+    def compute_step(
+        self,
+        method: NumericalMethod,
+        nu: float,
+        u: FArray,
+        dx: float,
+    ) -> FArray:
         """
         Args:
             method (NumericalMethod) = method for spatially discretizing equation
             nu (float) = viscocity
             u (FArray) = fluid velocity
             dx (float) = length of step in space
-        
+
         Returns:
             result (FArray) = fluid velocity at the next time step
         """
@@ -278,18 +302,26 @@ class RK2Integrator(IntegratorBase):
         result: FArray = u + 0.5 * (k1 + k2)
         return result
 
+
 class RK4Integrator(IntegratorBase):
     """
     Uses fourth-order Runge-Kutta (RK4) method to compute integration in time
     """
-    def compute_step(self, method: NumericalMethod, nu: float, u: FArray, dx: float,)-> FArray:
+
+    def compute_step(
+        self,
+        method: NumericalMethod,
+        nu: float,
+        u: FArray,
+        dx: float,
+    ) -> FArray:
         """
         Args:
             method (NumericalMethod) = method for spatially discretizing equation
             nu (float) = viscocity
             u (FArray) = fluid velocity
             dx (float) = length of step in space
-        
+
         Returns:
             result (FArray) = fluid velocity at the next time step
         """
@@ -303,3 +335,4 @@ class RK4Integrator(IntegratorBase):
         # loses track over multiple operations sometimes
         result: FArray = u + (1 / 6) * (k1 + 2. * k2 + 2. * k3 + k4)
         return result
+
