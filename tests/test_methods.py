@@ -29,7 +29,7 @@ class TestNumericalMethods(unittest.TestCase):
         """
         Dynamically compute the expected RHS for the FVM method.
         """
-        rhs = -((np.roll(u, -1) ** 2 - np.roll(u, +1) ** 2)) / (2 * self.dx)
+        rhs = -(np.roll(u, -1) ** 2 - np.roll(u, +1) ** 2) / (2 * self.dx)
         rhs += self.nu * (np.roll(u, -1) - 2 * u + np.roll(u, +1)) / self.dx**2
         return apply_boundary_conditions(rhs)
 
@@ -38,9 +38,9 @@ class TestNumericalMethods(unittest.TestCase):
         Test FDM method with varied inputs: positive, negative, and mixed values.
         """
         test_cases = [
-            np.array([1, 2, 3, 4, 5], dtype=float),  
-            np.array([-1, -2, -3, -4, -5], dtype=float),  
-            np.array([-1, 2, -3, 4, -5], dtype=float),  
+            np.array([1, 2, 3, 4, 5], dtype=float),
+            np.array([-1, -2, -3, -4, -5], dtype=float),
+            np.array([-1, 2, -3, 4, -5], dtype=float),
         ]
         for u in test_cases:
             with self.subTest(u=u):
@@ -62,6 +62,7 @@ class TestNumericalMethods(unittest.TestCase):
                 rhs = self.fvm_method(u, self.dx, self.nu)
                 expected_rhs = self.compute_expected_rhs_fvm(u)
                 np.testing.assert_almost_equal(rhs, expected_rhs, decimal=5)
-                
+
+
 if __name__ == "__main__":
     unittest.main()
