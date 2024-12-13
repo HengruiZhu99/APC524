@@ -2,6 +2,7 @@ import unittest
 import numpy as np
 from navier_stokes.fdm_fvm_functions import *
 
+
 class TestNumericalMethods(unittest.TestCase):
     """
     Unit tests for Finite Difference Method (FDM) and Finite Volume Method (FVM).
