@@ -2,6 +2,7 @@ import unittest
 import numpy as np
 from navier_stokes.fdm_fvm_functions import *
 
+
 class TestInitialize(unittest.TestCase):
     """
     Unit tests for the initialization functions: Gaussian and Sinusoidal.
@@ -53,6 +54,7 @@ class TestInitialize(unittest.TestCase):
         # Verify sinusoidal condition
         expected_first = np.sin(2 * np.pi * x[0] / L)
         self.assertAlmostEqual(u_initial[0], expected_first, places=7)
+
 
 if __name__ == "__main__":
     unittest.main()
