@@ -26,6 +26,3 @@ The Finite Volume Method divides the domain into control volumes, integrating th
 where $$\tau = \mu \frac{\partial u}{\partial x}$$ represents the viscous stress. Approximating the fluxes at the control volume interfaces yields a set of algebraic equations that can be solved iteratively.
 ### File Overview
 The /src/navier_stokes/ contain the files fdm_fvm_functions.py and plotting.py. fdm_fvm_functions.py houses the main functions needed to complete the finite difference and finite volume calculations, and plotting.py contains code to plot the results. FDM_FVM.ipynb is a jupyter notebook file that contains a worked example of the code and its output. The /tests/ folder contains testing functions to check that the code is outputting logical results.
-
-
-
